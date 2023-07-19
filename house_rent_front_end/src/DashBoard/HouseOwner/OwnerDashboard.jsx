@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { ApiContext } from '../../Provider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const OwnerDashboard = () => {
-  const { isOwner, isRenter } = useContext(ApiContext);
+  const { isOwner, isRenter } = useContext(AuthContext);
   return (
     <div className="flex h-screen">
       {/* Drawer */}
@@ -13,15 +13,15 @@ const OwnerDashboard = () => {
           {
             isOwner? 
             <>
-            <li className="mb-4 text-white"><Link to='/dashboard'>Add New house</Link></li>
+            <li className="mb-4 text-white"><Link to='/dashboard/Addhouse'>Add New house</Link></li>
             {/* isAdmin */}
             <li className="mb-4 text-white"><Link to='/dashboard/houseList'>All Houses</Link></li>
             </>
           :""
           } 
-          {
-           isRenter? <li className="mb-4 text-white"><Link to='/dashboard/mybooked'>My Booking</Link></li>:""
-          }       
+         
+            <li className="mb-4 text-white"><Link to='/dashboard/mybooked'>My Booking</Link></li>
+               
          
 
         </ul>

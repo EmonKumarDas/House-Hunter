@@ -58,4 +58,17 @@ const userData = (userCollection, app, jwt, JWT_secret) => {
     });
 };
 
-module.exports = { RegisterUser, LoginUser, userData };
+const addHouse = (houseCollection, app) => {
+    app.post('/addHouse', async (req, res) => {
+        try {
+            const user = req.body;
+            const result = await houseCollection.insertOne(user);
+            res.send(result);
+        }
+        catch (err) {
+            res.status(500).send('Error inserting user into the database');
+        }
+    });
+};
+
+module.exports = { RegisterUser, LoginUser, userData, addHouse };

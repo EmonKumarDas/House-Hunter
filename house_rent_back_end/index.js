@@ -8,9 +8,9 @@ const ObjectId = require('mongodb').ObjectId;
 
 //implement jwt token
 const jwt = require('jsonwebtoken');
-const JWT_secret = "jkfhj3hkjh4k343435hk3jh50(){}e[]ddfdds66d667d76282992"
-const { RegisterUser, LoginUser, userData } = require('./PostData');
-const { getUsers } = require('./GetData');
+const JWT_secret = "jkfhj3hkjh4k343435hk3jh50(){}e[]ddfdds66d667d76282992";
+const { RegisterUser, LoginUser, userData, addHouse } = require('./PostData');
+const { getHouses } = require('./GetData');
 app.use(cors());
 app.use(express.json());
 
@@ -32,10 +32,13 @@ async function run() {
     try {
         await client.connect();
         const userCollection = client.db("houseRent").collection("users");
+        const houseCollection = client.db("houseRent").collection("houses");
+
         RegisterUser(userCollection, app)
         LoginUser(userCollection, app, jwt, JWT_secret)
         userData(userCollection, app, jwt, JWT_secret)
-        getUsers(userCollection, app)
+        getHouses(houseCollection, app)
+        addHouse(houseCollection, app)
     }
     finally { }
 }

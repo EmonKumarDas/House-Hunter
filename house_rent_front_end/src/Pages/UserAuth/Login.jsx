@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { ApiContext } from '../../Provider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 const LoginForm = () => {
-  const { userLogin } = useContext(ApiContext);
+  const { userLogin,loading } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     userLogin.login(e);
@@ -26,7 +26,7 @@ const LoginForm = () => {
           </div>
           <div>
             <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Log In
+              {loading?"Loading...":"Log In"}
             </button>
             <p className='text-right my-4'><Link to="/registration">Create Account</Link></p>
           </div>

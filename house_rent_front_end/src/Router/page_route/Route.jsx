@@ -7,6 +7,8 @@ import DashBoardLayout from "../../LayOuts/DashBoard/DashBoard";
 import AddHouse from "../../DashBoard/HouseOwner/AddHouse";
 import HouseOwnerDashboard from "../../DashBoard/HouseOwner/HouseOwnerDashboard";
 import BookedHouse from "../../DashBoard/HouseRent/BookedHouse";
+import PrivateRoute from "../Private/PrivateRoute";
+import OwnerPrivateRoute from "../Private/OwnerPrivateRoute";
 
 const route = createBrowserRouter([
     {
@@ -23,12 +25,18 @@ const route = createBrowserRouter([
 
     {
         path: '/dashboard',
-        element: <DashBoardLayout></DashBoardLayout>,
+        element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
         // errorElement:<Error></Error>,
         children: [
+
             {
                 path: '/dashboard',
-                element: <AddHouse></AddHouse>
+                element: <BookedHouse></BookedHouse>
+            },
+
+            {
+                path: '/dashboard/Addhouse',
+                element: <OwnerPrivateRoute><AddHouse></AddHouse></OwnerPrivateRoute>
             },
             {
                 path: '/dashboard/houseList',

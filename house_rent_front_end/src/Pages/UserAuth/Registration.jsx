@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { ApiContext } from '../../Provider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Registration = () => {
-  const { userRegistration, loading } = useContext(ApiContext);
+  const { userRegistration, loading } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     userRegistration.register(e);

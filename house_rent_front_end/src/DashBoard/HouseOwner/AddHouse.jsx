@@ -1,8 +1,24 @@
 import React, { useContext, useState } from 'react';
-import { ApiContext } from '../../Provider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const AddHouse = () => {
-    const {setFormData,formData} = useContext(ApiContext);
+  const { user } = useContext(AuthContext);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    city: "",
+    bedrooms: "",
+    bathrooms: "",
+    roomSize: "",
+    picture: "",
+    availabilityDate: "",
+    rentPerMonth: "",
+    phoneNumber: "",
+    description: "",
+    owner_name: user.user_email,
+    owner_number: user.user_phoneNumber,
+  });
 
   const [errors, setErrors] = useState({});
 
@@ -38,7 +54,15 @@ const AddHouse = () => {
       setErrors(validationErrors);
     } else {
       // Submit the form or save the data
-      console.log(formData);
+      fetch("http://localhost:5001/addHouse", {
+
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+
+      }).then(res => res.json()).then(result => { })
       // Reset the form after submission
       setFormData({
         name: '',

@@ -1,25 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 
-export const ApiContext = createContext();
-export const ApiProvider = ({ children }) => {
+export const AuthContext = createContext();
+export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({});
     const [isOwner, setIsOwner] = useState(false);
     const [isRenter, setIsRenter] = useState(false);
 
-    const [formData, setFormData] = useState({
-        name: "",
-        address: "",
-        city: "",
-        bedrooms: "",
-        bathrooms: "",
-        roomSize: "",
-        picture: "",
-        availabilityDate: "",
-        rentPerMonth: "",
-        phoneNumber: "",
-        description: "",
-    });
+  
 
     class Create_method {
         user_register(url, data, success_message, unsucess_message) {
@@ -33,7 +21,6 @@ export const ApiProvider = ({ children }) => {
             })
                 .then((res) => res.json())
                 .then((result) => {
-                    console.log(result);
                     setLoading(false);
                     window.alert(success_message);
                     window.location.href = "/login";
@@ -81,13 +68,12 @@ export const ApiProvider = ({ children }) => {
                 .then((result) => {
                     if (result.status === "ok") {
                         window.localStorage.setItem("token", result.data);
-                        window.localStorage.setItem("loggedIn", true);
                         window.location.href = "/";
                     }
                 })
                 .catch((error) => {
                     setLoading(false);
-                    window.alert(unsucess_message);
+                    window.alert("user not fount");
                 });
         }
     }
@@ -142,11 +128,11 @@ export const ApiProvider = ({ children }) => {
     }, []);
 
     return (
-        <ApiContext.Provider
+        <AuthContext.Provider
             value={{
-                formData,
+           
                 userRegistration,
-                setFormData,
+   
                 loading,
                 userLogin,
                 user,
@@ -155,6 +141,6 @@ export const ApiProvider = ({ children }) => {
             }}
         >
             {children}
-        </ApiContext.Provider>
+        </AuthContext.Provider>
     );
 };

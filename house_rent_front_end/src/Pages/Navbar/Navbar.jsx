@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ApiContext } from '../../Provider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useContext(ApiContext);
+  const { user } = useContext(AuthContext);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };

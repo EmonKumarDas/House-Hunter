@@ -1,23 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import HouseTableRow from './HouseTableRow';
+import { ApiContext } from '../../Provider/ApiProvider';
 
 const HouseOwnerDashboard = () => {
-  const [houses, setHouses] = useState([
-    {
-      id: 1,
-      name: 'House 1',
-      address: '123 Main St',
-      city: 'New York',
-      bedrooms: 3,
-      bathrooms: 2,
-      roomSize: '1500 sqft',
-      availabilityDate: '2023-07-31',
-      rentPerMonth: 1200,
-      phoneNumber: '017XXXXXXXX',
-      description: 'A beautiful house for rent.',
-    },
-    // Add more houses here...
-  ]);
+  const {Houses} = useContext(ApiContext);
 
   const handleDeleteHouse = (houseId) => {
     setHouses((prevHouses) => prevHouses.filter((house) => house.id !== houseId));
@@ -66,9 +52,9 @@ const HouseOwnerDashboard = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {houses.map((house) => (
+              {Houses.map((house) => (
                 <HouseTableRow
-                  key={house.id}
+                  key={house._id}
                   house={house}
                   onDelete={handleDeleteHouse}
                   onEdit={() => console.log('Edit clicked for house', house.id)}
