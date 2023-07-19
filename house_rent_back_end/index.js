@@ -7,8 +7,10 @@ require('dotenv').config();
 const ObjectId = require('mongodb').ObjectId;
 
 //implement jwt token
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
+const {RegisterUser } = require('./PostData');
+const { getUsers } = require('./GetData');
 app.use(cors());
 app.use(express.json());
 
@@ -28,8 +30,10 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
-        // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
+        const userCollection = client.db("houseRent").collection("users");
+        RegisterUser(userCollection, app)
+        getUsers(userCollection, app)
       }
 
      finally { }

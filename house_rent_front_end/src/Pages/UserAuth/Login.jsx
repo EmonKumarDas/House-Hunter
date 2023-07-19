@@ -1,15 +1,19 @@
-// src/LoginForm.js
-
-import React from 'react';
+import React, { useContext } from 'react';
+import { ApiContext } from '../../ApiProvider/ApiProvider';
 
 const LoginForm = () => {
+  const {userLogin} = useContext(ApiContext);
+  const handleLogin=(e)=>{
+    e.preventDefault();
+    userLogin.login(e);
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-800 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white rounded-lg shadow-lg py-8 px-4 sm:px-6 lg:px-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Log In</h2>
         </div>
-        <form className="mt-8 space-y-6">
+        <form onSubmit={handleLogin} className="mt-8 space-y-6">
           <div className="grid grid-cols-1 gap-y-6">
             <div>
               <label htmlFor="emailAddress" className="block text-sm font-medium text-gray-700">Email address</label>
