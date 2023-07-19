@@ -1,6 +1,5 @@
-// src/Navbar.js
-
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +20,7 @@ const Navbar = () => {
             <div className="hidden md:block ml-10 space-x-4">
               <a href="/" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
               <a href="/contact" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+              <Link to="/dashboard" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">DashBoard</Link>
               <a href="/login" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Login</a>
               <a href="/registration" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Registration</a>
             </div>
