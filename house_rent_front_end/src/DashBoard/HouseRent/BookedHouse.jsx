@@ -4,9 +4,7 @@ import { ApiContext } from '../../Provider/ApiProvider';
 
 const BookedHouse = () => {
   const { bookedHouse, loading } = useContext(ApiContext)
-  const handleDeleteHouse = (houseId) => {
-    setHouses((prevHouses) => prevHouses.filter((house) => house.id !== houseId));
-  };
+
 
   return (
     <>
@@ -57,8 +55,7 @@ const BookedHouse = () => {
                   <BookedHouseTableRow
                     key={house._id}
                     house={house}
-                    onDelete={handleDeleteHouse}
-                  // onEdit={() => console.log('Edit clicked for house', house.id)}
+             
                   />
                 ))}
               </tbody>

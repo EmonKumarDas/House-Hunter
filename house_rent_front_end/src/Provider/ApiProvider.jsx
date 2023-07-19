@@ -81,7 +81,7 @@ export const ApiProvider = ({ children }) => {
             body: JSON.stringify({ isAvailable: false }),
         })
 
-            .then(res => res.json()).then(result => console.log(result))
+            .then(res => res.json()).then(result => {})
         const appendData = {
             ...house, ...user
         }

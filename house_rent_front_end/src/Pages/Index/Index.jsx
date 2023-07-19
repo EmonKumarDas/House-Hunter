@@ -4,7 +4,7 @@ import Card from '../../Components/Card';
 import { ApiContext } from '../../Provider/ApiProvider';
 
 const Index = () => {
-    const { Houses, loading } = useContext(ApiContext);
+    const { Houses } = useContext(ApiContext);
     const productsPerPage = 5;
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -23,8 +23,7 @@ const Index = () => {
         <>
             <Slide></Slide>
             <h1 className='font-bold font-mono text-3xl text-center my-3'>Featured Properties</h1>
-            {
-                loading ? "Loading..." :
+          
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 p-4">
                         {currentProducts.map((house) => (
                             <Card
@@ -33,7 +32,7 @@ const Index = () => {
                             />
                         ))}
                     </div>
-            }
+        
             {/* Pagination */}
             <div className="flex justify-center my-4">
                 {Array.from({ length: Math.ceil(Houses?.length / productsPerPage) }, (_, index) => (

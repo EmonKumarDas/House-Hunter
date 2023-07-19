@@ -13,6 +13,7 @@ const { RegisterUser, LoginUser, userData, addHouse, bookHouse } = require('./Po
 const { getHouses, bookedHouses } = require('./GetData');
 const { getHousesByOwners, getBookedHouses } = require('./GetDatabyUser');
 const { UpdateBooked } = require('./Update');
+const { deleteBookedHouse } = require('./Delete');
 app.use(cors());
 app.use(express.json());
 
@@ -62,6 +63,7 @@ async function run() {
         getBookedHouses(BookHouseCollection, app)
         bookedHouses(BookHouseCollection, app)
         UpdateBooked(app, houseCollection, ObjectId)
+        deleteBookedHouse(app, BookHouseCollection, ObjectId)
     }
     finally { }
 }

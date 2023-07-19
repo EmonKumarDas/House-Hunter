@@ -1,13 +1,29 @@
 import React from 'react';
 
-const BookedHouseTableRow = ({ house, onDelete, onEdit }) => {
+const BookedHouseTableRow = ({ house }) => {
 
-  const handleEdit = () => {
-    onEdit(house);
-  };
+  const handleDelete = (House_id, id) => {
+    fetch(`http://localhost:5001/UpdateBooked/${House_id}`, {
 
-  const handleDelete = () => {
-    onDelete(house.id);
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isAvailable: true }),
+    })
+
+      .then(res => res.json()).then(result => { }
+
+      )
+      
+    fetch(`http://localhost:5001/deleteBookedHouse/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json()).then(result => window.location.href = "/dashboard/mybooked")
+
+
   };
 
   return (
@@ -25,7 +41,7 @@ const BookedHouseTableRow = ({ house, onDelete, onEdit }) => {
       <td className="px-6 py-4 whitespace-nowrap space-x-2">
         <button
           className="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600"
-          onClick={handleDelete}
+          onClick={() => handleDelete(house?.appendData?._id, house?._id)}
         >
           Delete
         </button>
