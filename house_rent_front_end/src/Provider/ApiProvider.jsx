@@ -71,6 +71,17 @@ export const ApiProvider = ({ children }) => {
 
 
     const getProductById = (house) => {
+        const id = house?._id;
+        fetch(`http://localhost:5001/UpdateBooked/${id}`, {
+
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ isAvailable: false }),
+        })
+
+            .then(res => res.json()).then(result => console.log(result))
         const appendData = {
             ...house, ...user
         }
@@ -87,7 +98,7 @@ export const ApiProvider = ({ children }) => {
         })
             .then(res => res.json())
             .then(result => {
-
+                window.location.href='/';
                 window.alert("house booked")
             })
             .catch(error => {

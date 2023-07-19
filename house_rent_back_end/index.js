@@ -12,6 +12,7 @@ const JWT_secret = "jkfhj3hkjh4k343435hk3jh50(){}e[]ddfdds66d667d76282992";
 const { RegisterUser, LoginUser, userData, addHouse, bookHouse } = require('./PostData');
 const { getHouses, bookedHouses } = require('./GetData');
 const { getHousesByOwners, getBookedHouses } = require('./GetDatabyUser');
+const { UpdateBooked } = require('./Update');
 app.use(cors());
 app.use(express.json());
 
@@ -51,7 +52,6 @@ async function run() {
         const userCollection = client.db("houseRent").collection("users");
         const houseCollection = client.db("houseRent").collection("houses");
         const BookHouseCollection = client.db("houseRent").collection("booked");
-
         RegisterUser(userCollection, app)
         LoginUser(userCollection, app, jwt, JWT_secret)
         userData(userCollection, app, jwt, JWT_secret)
@@ -61,6 +61,7 @@ async function run() {
         bookHouse(BookHouseCollection, app)
         getBookedHouses(BookHouseCollection, app)
         bookedHouses(BookHouseCollection, app)
+        UpdateBooked(app, houseCollection, ObjectId)
     }
     finally { }
 }

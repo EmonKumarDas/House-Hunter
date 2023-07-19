@@ -22,8 +22,10 @@ const Card = ({ house }) => {
         <p className="text-gray-600 font-medium mb-2">Bedrooms: {house?.bedrooms}</p>
         <p className="text-gray-600 font-medium mb-2">Bathrooms: {house?.bathrooms}</p>
         <p className="text-gray-600 font-medium mb-2">Room Size: {house?.roomSize}</p>
-        <p>Availability: Available Now</p>
-        <button onClick={() => getId(house)} className="px-4 py-2 bg-indigo-600 text-white rounded-md focus:outline-none hover:bg-indigo-700 mb-2">Book Now</button>
+        {
+          house?.isAvailable===false?<button disabled className="px-4 py-2 bg-indigo-600 text-white rounded-md focus:outline-none hover:bg-indigo-700 mb-2">Booked</button>:<button onClick={() => getId(house)} className="px-4 py-2 bg-indigo-600 text-white rounded-md focus:outline-none hover:bg-indigo-700 mb-2">Book Now</button>
+        }
+        
       </div>
 
     </div>
