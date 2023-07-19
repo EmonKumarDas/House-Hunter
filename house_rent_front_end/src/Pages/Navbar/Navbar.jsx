@@ -9,7 +9,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
   const handleLogout = () => {
-    console.log("inside")
+
     window.localStorage.clear();
     window.location.href = '/login'
   }

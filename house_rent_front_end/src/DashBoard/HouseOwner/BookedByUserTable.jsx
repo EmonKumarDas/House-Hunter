@@ -1,7 +1,7 @@
 import React from 'react';
 
-const BookedHouseTableRow = ({ house, onDelete, onEdit }) => {
-
+const BookedByUserTable = ({ house, onDelete, onEdit }) => {
+    console.log(house)
   const handleEdit = () => {
     onEdit(house);
   };
@@ -24,6 +24,12 @@ const BookedHouseTableRow = ({ house, onDelete, onEdit }) => {
       <td className="px-6 py-4 whitespace-nowrap">{house?.appendData?.description}</td>
       <td className="px-6 py-4 whitespace-nowrap space-x-2">
         <button
+          className="px-3 py-1 rounded-md bg-blue-500 text-white hover:bg-blue-600"
+          onClick={handleEdit}
+        >
+          Edit
+        </button>
+        <button
           className="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600"
           onClick={handleDelete}
         >
@@ -34,4 +40,4 @@ const BookedHouseTableRow = ({ house, onDelete, onEdit }) => {
   );
 };
 
-export default BookedHouseTableRow;
+export default BookedByUserTable;

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ApiContext } from '../Provider/ApiProvider';
 
 const Card = ({ house }) => {
+  const { getProductById } = useContext(ApiContext);
+  const getId = (id) => {
+    getProductById(id);
+  }
+
   return (
     <div className="group bg-white rounded-lg shadow-lg overflow-hidden">
       <img
         className="object-cover w-full h-48"
-        src={house.picture}// Replace with the actual image URL
+        src={house.picture}
         alt="Property"
       />
       <div className="p-4">
@@ -17,7 +23,7 @@ const Card = ({ house }) => {
         <p className="text-gray-600 font-medium mb-2">Bathrooms: {house?.bathrooms}</p>
         <p className="text-gray-600 font-medium mb-2">Room Size: {house?.roomSize}</p>
         <p>Availability: Available Now</p>
-        <button className="px-4 py-2 bg-indigo-600 text-white rounded-md focus:outline-none hover:bg-indigo-700 mb-2">Book Now</button>
+        <button onClick={() => getId(house)} className="px-4 py-2 bg-indigo-600 text-white rounded-md focus:outline-none hover:bg-indigo-700 mb-2">Book Now</button>
       </div>
 
     </div>

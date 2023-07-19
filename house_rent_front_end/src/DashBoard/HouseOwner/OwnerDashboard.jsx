@@ -16,6 +16,7 @@ const OwnerDashboard = () => {
             <li className="mb-4 text-white"><Link to='/dashboard/Addhouse'>Add New house</Link></li>
             {/* isAdmin */}
             <li className="mb-4 text-white"><Link to='/dashboard/houseList'>All Houses</Link></li>
+            <li className="mb-4 text-white"><Link to='/dashboard/booked'>Booked By User</Link></li>
             </>
           :""
           } 

@@ -9,6 +9,7 @@ import HouseOwnerDashboard from "../../DashBoard/HouseOwner/HouseOwnerDashboard"
 import BookedHouse from "../../DashBoard/HouseRent/BookedHouse";
 import PrivateRoute from "../Private/PrivateRoute";
 import OwnerPrivateRoute from "../Private/OwnerPrivateRoute";
+import BookedByUser from "../../DashBoard/HouseOwner/BookedByUser";
 
 const route = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const route = createBrowserRouter([
             {
                 path: '/dashboard/mybooked',
                 element: <BookedHouse></BookedHouse>
+            },
+            {
+                path: '/dashboard/booked',
+                element: <BookedByUser></BookedByUser>
             },
         ],
     },

@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import HouseTableRow from './HouseTableRow';
 import { ApiContext } from '../../Provider/ApiProvider';
+import BookedByUserTable from './BookedByUserTable';
 
-const HouseOwnerDashboard = () => {
-  const { HousesByOwner, loading } = useContext(ApiContext);
 
+const BookedByUser = () => {
+  const { bookedHouse, loading } = useContext(ApiContext);
   const handleDeleteHouse = (houseId) => {
     setHouses((prevHouses) => prevHouses.filter((house) => house.id !== houseId));
   };
@@ -54,8 +55,8 @@ const HouseOwnerDashboard = () => {
             {
               loading ? "Loading..." :
                 <tbody tbody className="bg-white divide-y divide-gray-200">
-                  {HousesByOwner?.map((house) => (
-                    <HouseTableRow
+                  {bookedHouse?.map((house) => (
+                    <BookedByUserTable
                       key={house._id}
                       house={house}
                       onDelete={handleDeleteHouse}
@@ -71,4 +72,4 @@ const HouseOwnerDashboard = () => {
   );
 };
 
-export default HouseOwnerDashboard;
+export default BookedByUser;
