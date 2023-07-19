@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ApiContext } from '../../ApiProvider/ApiProvider';
+import { ApiContext } from '../../Provider/AuthProvider';
 
 const Registration = () => {
   const { userRegistration, loading } = useContext(ApiContext);

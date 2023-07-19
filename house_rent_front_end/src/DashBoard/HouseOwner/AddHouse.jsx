@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { ApiContext } from '../../ApiProvider/ApiProvider';
+import { ApiContext } from '../../Provider/AuthProvider';
 
 const AddHouse = () => {
     const {setFormData,formData} = useContext(ApiContext);

@@ -6,6 +6,7 @@ import LoginForm from "../../Pages/UserAuth/Login";
 import DashBoardLayout from "../../LayOuts/DashBoard/DashBoard";
 import AddHouse from "../../DashBoard/HouseOwner/AddHouse";
 import HouseOwnerDashboard from "../../DashBoard/HouseOwner/HouseOwnerDashboard";
+import BookedHouse from "../../DashBoard/HouseRent/BookedHouse";
 
 const route = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const route = createBrowserRouter([
             {
                 path: '/dashboard/houseList',
                 element: <HouseOwnerDashboard></HouseOwnerDashboard>
+            },
+            {
+                path: '/dashboard/mybooked',
+                element: <BookedHouse></BookedHouse>
             },
         ],
     },

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ApiContext } from '../../Provider/AuthProvider';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { user } = useContext(ApiContext);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
+  const handleLogout = () => {
+    console.log("inside")
+    window.localStorage.clear();
+    window.location.href = '/login'
+  }
   return (
     <nav className="bg-indigo-600 py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,16 +25,16 @@ const Navbar = () => {
             <div className="hidden md:block ml-10 space-x-4">
               <a href="/" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
               <a href="/contact" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-              <Link to="/dashboard" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">DashBoard</Link>
-              <a href="/login" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Login</a>
-              <a href="/registration" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Registration</a>
+              {user?.user_email?<Link to="/dashboard" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">DashBoard</Link>:""}
+              {!user?.user_email?<Link to="/login" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Login</Link>:""}
+             {!user?.user_email?<Link to="/registration" className="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">Registration</Link>:""}
             </div>
           </div>
 
           {/* Right side of the navbar */}
           <div className="hidden md:flex items-center">
-            <img className="h-8 w-8 rounded-full" src="/user-profile.jpg" alt="User" />
-            <button className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-700">Logout</button>
+            <p className='text-white font-bold uppercase'>{user?.user_name}</p>
+            <button onClick={handleLogout} className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-700">{user?.user_email?"Logout":""}</button>
           </div>
 
           {/* Hamburger menu */}
@@ -52,11 +57,10 @@ const Navbar = () => {
           <div className="md:hidden mt-2 space-y-2">
             <a href="/" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700">Home</a>
             <a href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700">Contact</a>
-            <a href="/login" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700">Login</a>
-            <a href="/registration" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700">Registration</a>
+            {!user?.user_email?<Link to="/login" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700">Login</Link>:""}
+            {!user?.user_email?<Link to="/registration" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700">Registration</Link>:""}
             <div className="flex items-center">
-              <img className="h-8 w-8 rounded-full" src="/user-profile.jpg" alt="User" />
-              <button className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-700">Logout</button>
+              <button onClick={handleLogout} className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-700">{user.user_email?"Logout":""}</button>
             </div>
           </div>
         )}
