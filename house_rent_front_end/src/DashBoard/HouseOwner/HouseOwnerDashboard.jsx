@@ -3,7 +3,7 @@ import HouseTableRow from './HouseTableRow';
 import { ApiContext } from '../../Provider/ApiProvider';
 
 const HouseOwnerDashboard = () => {
-  const {Houses} = useContext(ApiContext);
+  const {Houses,HousesByOwner} = useContext(ApiContext);
 
   const handleDeleteHouse = (houseId) => {
     setHouses((prevHouses) => prevHouses.filter((house) => house.id !== houseId));
@@ -52,7 +52,7 @@ const HouseOwnerDashboard = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {Houses.map((house) => (
+              {HousesByOwner?.map((house) => (
                 <HouseTableRow
                   key={house._id}
                   house={house}

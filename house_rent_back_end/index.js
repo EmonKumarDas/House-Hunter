@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 const JWT_secret = "jkfhj3hkjh4k343435hk3jh50(){}e[]ddfdds66d667d76282992";
 const { RegisterUser, LoginUser, userData, addHouse } = require('./PostData');
 const { getHouses } = require('./GetData');
+const { getHousesByOwners } = require('./GetDatabyUser');
 app.use(cors());
 app.use(express.json());
 
@@ -39,6 +40,7 @@ async function run() {
         userData(userCollection, app, jwt, JWT_secret)
         getHouses(houseCollection, app)
         addHouse(houseCollection, app)
+        getHousesByOwners(houseCollection, app)
     }
     finally { }
 }
